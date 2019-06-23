@@ -25,7 +25,7 @@ describe("Controller", () => {
     let observer = new MockObserver();
 
     controller.registerObserver(observer);
-    controller.updateValue("Hello World");
+    controller.updateName("Hello World");
     expect(observer.value).toBe("Hello World");
   });
 });

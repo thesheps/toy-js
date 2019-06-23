@@ -7,7 +7,7 @@ export default class MockController extends Controller {
     };
   }
 
-  updateValue(value: string) {
+  updateName(value: string) {
     this.state.name = value;
   }
 }

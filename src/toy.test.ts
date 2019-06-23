@@ -34,7 +34,7 @@ describe("Toy", () => {
     const toy = new Toy(controller, root);
     expect(root.textContent).toEqual("Hello, Dave!");
 
-    controller.updateValue("Steve");
+    controller.updateName("Steve");
     expect(root.textContent).toEqual("Hello, Steve!");
   });
 });
