@@ -3,11 +3,11 @@ import Controller from "../controller";
 export default class MockController extends Controller {
   protected data(): any {
     return {
-      test: ""
+      name: "Dave"
     };
   }
 
   updateValue(value: string) {
-    this.state.test = value;
+    this.state.name = value;
   }
 }

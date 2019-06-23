@@ -22,6 +22,7 @@ export default abstract class Controller {
 
   public registerObserver(observer: Observer) {
     this.observers.push(observer);
+    Object.keys(this.state).forEach(k => observer.update(k, this.state[k]));
   }
 
   public getObservers() {

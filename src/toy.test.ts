@@ -6,16 +6,35 @@ describe("Toy", () => {
     class MyLovelyClass {
       thing: string;
 
-      constructor(thing: string) {
-        this.thing = thing;
-      }
+      constructor(thing: string) {}
     }
   });
 
   it("implements the Observer interface, and registers itself upon construction", () => {
     const controller = new MockController();
-    const toy = new Toy(controller);
+    const toy = new Toy(controller, null);
 
     expect(controller.getObservers()).toEqual([toy]);
+  });
+
+  it("renders the DOM upon construction, rendering any moustaches it finds", () => {
+    const controller = new MockController();
+    const root = document.createElement("div");
+    root.append(document.createTextNode("Hello, {name}!"));
+
+    new Toy(controller, root);
+    expect(root.textContent).toEqual("Hello, Dave!");
+  });
+
+  it("re-renders the DOM when the state changes", () => {
+    const controller = new MockController();
+    const root = document.createElement("div");
+    root.append(document.createTextNode("Hello, {name}!"));
+
+    const toy = new Toy(controller, root);
+    expect(root.textContent).toEqual("Hello, Dave!");
+
+    controller.updateValue("Steve");
+    expect(root.textContent).toEqual("Hello, Steve!");
   });
 });
