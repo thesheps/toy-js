@@ -1,28 +1,31 @@
-import Controller from "./controller";
-import Observer from "./observer";
-
-class MockObserver implements Observer {
-  bar: false;
-
-  update(key: string, value: any): void {}
-}
+import MockController from "./mocks/mockController";
+import MockObserver from "./mocks/mockObserver";
 
 describe("Controller", () => {
-  it("allows observers to be added to a collection", () => {
-    const controller = new Controller();
-    const observer = new MockObserver();
-    controller.registerObserver(observer);
+  it("contains an abstract function named 'data'", () => {
+    let controller = new MockController();
+    expect(Reflect.has(controller, "data")).toBeTruthy();
+  });
 
+  it("contains a readonly property named 'state'", () => {
+    let controller = new MockController();
+    expect(Reflect.has(controller, "state")).toBeTruthy();
+  });
+
+  it("adds observers to the internal collection when registerObserver is used", () => {
+    let controller = new MockController();
+    let observer = new MockObserver();
+
+    controller.registerObserver(observer);
     expect(controller.getObservers()).toEqual([observer]);
   });
 
-  it("notifies observers upon the change of state", () => {
-    const controller = new Controller();
-    const observer = new MockObserver();
-    controller.registerObserver(observer);
-    expect(observer.bar).toBeFalsy();
+  it("notifies observers when the state is updated", () => {
+    let controller = new MockController();
+    let observer = new MockObserver();
 
-    controller.bar = true;
-    expect(observer.bar).toBeTruthy();
+    controller.registerObserver(observer);
+    controller.updateValue("Hello World");
+    expect(observer.value).toBe("Hello World");
   });
 });

@@ -1,24 +1,30 @@
 import Observer from "./observer";
 
-export default class Controller {
-  private readonly observers: Array<Observer> = new Array<Observer>();
+export default abstract class Controller {
+  private observers: Array<Observer> = new Array<Observer>();
 
-  private _bar: boolean = false;
+  protected readonly state: any;
+  protected abstract data(): any;
 
-  get bar(): boolean {
-    return this._bar;
+  constructor() {
+    this.state = new Proxy<any>(this.data(), {
+      set: (obj, key, value) => {
+        Reflect.set(obj, key, value);
+
+        this.observers.forEach(async o => {
+          o.update(key as string, value);
+        });
+
+        return true;
+      }
+    });
   }
 
-  set bar(value: boolean) {
-    this._bar = value;
-    this.observers.forEach(o => o.update("bar", value))
-  }
-
-  registerObserver(observer: Observer) {
+  public registerObserver(observer: Observer) {
     this.observers.push(observer);
   }
 
-  getObservers() {
-    return this.observers.map(o => Object.assign({}, o));
+  public getObservers() {
+    return this.observers;
   }
 }
