@@ -1,6 +1,6 @@
-import Observer from "./observer";
+import { Observer } from "./observer";
 
-export default abstract class Controller {
+abstract class Controller {
   private observers: Array<Observer> = new Array<Observer>();
 
   protected readonly state: any;
@@ -29,3 +29,5 @@ export default abstract class Controller {
     return this.observers;
   }
 }
+
+export { Controller };

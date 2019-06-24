@@ -1,7 +1,7 @@
-import Observer from "./observer";
-import Controller from "./controller";
+import { Observer } from "./observer";
+import { Controller } from "./controller";
 
-export default class Toy implements Observer {
+class Toy implements Observer {
   private readonly root: HTMLElement;
   private readonly template: Node;
 
@@ -21,3 +21,5 @@ export default class Toy implements Observer {
     controller.registerObserver(this);
   }
 }
+
+export { Toy };

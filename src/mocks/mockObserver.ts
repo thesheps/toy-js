@@ -1,4 +1,4 @@
-import Observer from "../observer";
+import { Observer } from "../observer";
 
 export default class MockObserver implements Observer {
   value: Object;
