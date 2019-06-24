@@ -9,7 +9,7 @@ export default class Toy implements Observer {
     if (!this.root) return;
 
     this.root.textContent = this.template.textContent.replace(
-      `{${key}}`,
+      `{{${key}}}`,
       value
     );
   }

@@ -17,10 +17,10 @@ describe("Toy", () => {
     expect(controller.getObservers()).toEqual([toy]);
   });
 
-  it("renders the DOM upon construction, rendering any moustaches it finds", () => {
+  it("renders the DOM upon construction, rendering any double-moustaches it finds", () => {
     const controller = new MockController();
     const root = document.createElement("div");
-    root.append(document.createTextNode("Hello, {name}!"));
+    root.append(document.createTextNode("Hello, {{name}}!"));
 
     new Toy(controller, root);
     expect(root.textContent).toEqual("Hello, Dave!");
@@ -29,7 +29,7 @@ describe("Toy", () => {
   it("re-renders the DOM when the state changes", () => {
     const controller = new MockController();
     const root = document.createElement("div");
-    root.append(document.createTextNode("Hello, {name}!"));
+    root.append(document.createTextNode("Hello, {{name}}!"));
 
     const toy = new Toy(controller, root);
     expect(root.textContent).toEqual("Hello, Dave!");
