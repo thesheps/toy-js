@@ -1,5 +1,5 @@
-import MockController from "./mocks/mockController";
-import Toy from "./toy";
+import { MockController } from "./mocks/mockController";
+import { Toy } from "./toy";
 
 describe("Toy", () => {
   it("looks like TypeScript is correctly configured", () => {

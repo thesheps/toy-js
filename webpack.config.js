@@ -1,8 +1,9 @@
 var path = require("path");
 
 module.exports = {
-  entry: "./src/toy",
+  entry: "./src/index",
   output: {
+    library: "toyjs",
     path: path.resolve(__dirname, "dist"),
     filename: "toy.js"
   },
@@ -14,7 +15,7 @@ module.exports = {
       {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        loader: "ts-loader"
       }
     ]
   }

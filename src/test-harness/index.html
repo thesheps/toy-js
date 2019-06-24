@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="/dist/toy.js"></script>
+  </head>
+
+  <body>
+    <div id="root">Hello, {{name}}!</div>
+
+    <script>
+      const toy = new toyjs.Toy(
+        new toyjs.MockController(),
+        document.getElementById("root")
+      );
+    </script>
+  </body>
+</html>

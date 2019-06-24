@@ -1,4 +1,4 @@
-import MockController from "./mocks/mockController";
+import { MockController } from "./mocks/mockController";
 import MockObserver from "./mocks/mockObserver";
 
 describe("Controller", () => {

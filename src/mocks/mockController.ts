@@ -1,6 +1,6 @@
 import { Controller } from "../controller";
 
-export default class MockController extends Controller {
+class MockController extends Controller {
   protected data(): any {
     return {
       name: "Dave"
@@ -11,3 +11,5 @@ export default class MockController extends Controller {
     this.state.name = value;
   }
 }
+
+export { MockController };
